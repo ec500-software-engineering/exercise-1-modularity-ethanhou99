@@ -5,15 +5,14 @@ import AI_module as AI
 from Database_Module import DataBaseModule
 from datetime import datetime as dt
 
-authenDB = {'admin':"123456"}
-infoDB = {}
 
 # Login to the database
+authenDB = {'admin':"123456"}
+infoDB = {}
 DB = DataBaseModule()
 username = 'admin'
 password = '123456'
 DB.authen(username, password)
-
 
 def read_data(filename):
     ''' Read data from txt file and save data to a 2D-array'''
@@ -28,8 +27,8 @@ def read_data(filename):
         sign_array.append([uid, age, gender, heartrate, SystolicBP, DiastolicBP, blood_oxygen, temp])
     return sign_array
 
-
 def main():
+    '''main function of the system'''
     sign_array = read_data('vital_signs.txt')
     # Output patient information
     userID = sign_array[0][0]
@@ -56,7 +55,7 @@ def main():
         
         # Display AI prediction result
         output.display_AI_iuput_data(patient.dic['blood_oxygen'], patient.dic['Systolic_BP'], patient.dic['heartrate'])
-        
+
 
 if __name__ == "__main__":
     main()
