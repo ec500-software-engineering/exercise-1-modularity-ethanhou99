@@ -31,6 +31,7 @@ def receive_basic_iuput_data(Singal_Loss, Shock_Alert, Oxygen_Supply, Fever, Hyp
 
 def print_patient_data(Systolic_BP, Diastolic_BP, Heart_Rate, Heart_O2_Level, Body_temp):
     print("Time: ", dt.now())
+    print("|Vital Sign|")
     print('Systolic Blood Pressure: ', Systolic_BP)
     print('Diastolic Blood Pressure: ', Diastolic_BP)
     print('Heart Rate: ', Heart_Rate)
@@ -45,7 +46,6 @@ def print_title(patientID, gender, age):
     print('Gender:', gender)
     print('Age: ', age)
     print("============================================")
-    print("|Vital Sign|")
 
 def alert_management(Systolic_BP, Diastolic_BP, Heart_Rate, Heart_O2_Level, Body_temp):
     new_alert = analysis.Analyzer(Systolic_BP, Diastolic_BP, Heart_Rate, Heart_O2_Level, Body_temp)
