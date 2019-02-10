@@ -1,9 +1,61 @@
 # EC500-Modular Design-2.4
 
+### Instructions
+Run the main.py directly and input data to the vital_signs.txt file.
+The system will out put patient data and machine learning result, and save data to the database.
+Following is an output template:
+```
+Authentication Succeed!
+
+============================================
+Welcome to the Vital Sign Montitoring System
+============================================
+Patient ID:  12345
+Gender: Male
+Age:  30
+============================================
+Time:  2019-02-10 12:35:54.184409
+|Vital Sign|
+Systolic Blood Pressure:  100
+Diastolic Blood Pressure:  70
+Heart Rate:  90
+Heart Oxygen Level 80
+Body Temperature:  37
+All the vital signs were within normal limits.
+
+|AI Predictions|
+Blood pressure prediction:
+100.0
+Blood oxygen prediction:
+80.0
+Pulse_predict_result:
+90.0
+---------------
+Time:  2019-02-10 12:35:54.202410
+|Vital Sign|
+Systolic Blood Pressure:  30
+Diastolic Blood Pressure:  180
+Heart Rate:  30
+Heart Oxygen Level 30
+Body Temperature:  39
+
+|Alert|
+Please Increase Oxygen_Supply!
+Fever!
+Hypertension
+|AI Predictions|
+Blood pressure prediction:
+30.0
+Blood oxygen prediction:
+30.0
+Pulse_predict_result:
+30.0
+---------------
+```
 ### System Diagram(Leyang Shen)
 
 <img align = center src = "https://github.com/leonshen95/EC500/blob/master/EC500%20diagram%201.jpg?raw=true">
- 
+
 ## Database Module(Yuxuan Su & Zifan Wang)
 before using the Database Module, you should construct the database object first:  
 ```
@@ -14,12 +66,12 @@ db_module.authen(userid, password)
 # to insert patient's data into database module
 # here's the example format of patient's data:
 data = {
-            'time': '2019-02-06 17:11',
-            'gender': 'male',
-            'heartrate': 100,
-            'blood_pressure': 125,
-            'blood_oxygen': 0.7
-        }
+'time': '2019-02-06 17:11',
+'gender': 'male',
+'heartrate': 100,
+'blood_pressure': 125,
+'blood_oxygen': 0.7
+}
 db_module.insert(userid, data)
 
 # to search patient's data from database module
@@ -31,20 +83,20 @@ db_module.delete(userid)
 ### Rough code for authentation
 ```
 class authentation:
-    def __init__(self):
-      self.username = ""
-      self.password = ""
-    
-    def ifmatch(self, username, password):
-        do search in authDB
-        if match:
-            return true
-        else:
-            return authentation().failure
-     
-    def failure(self):
-        print("Authentation Failed")
-        return false
+def __init__(self):
+self.username = ""
+self.password = ""
+
+def ifmatch(self, username, password):
+do search in authDB
+if match:
+return true
+else:
+return authentation().failure
+
+def failure(self):
+print("Authentation Failed")
+return false
 ```
 #### Rough structure for authDB
 ```
@@ -56,20 +108,20 @@ permission part reserved for future function extension
 ### for infoDB
 ```
 class infoDB:
-    def __init__(self):
-        self.personalInfo = {}
-        self.bioInfo = {}
-        
-    def search(self, keyword):
-        do search
-        return 
-    
-    def delete(self, keyword):
-        do delete
-    
-    def insert(self, personalInfo, bioInfo):
-        self.personalInfo = personalInfo
-        self.bioInfo = bioInfo
+def __init__(self):
+self.personalInfo = {}
+self.bioInfo = {}
+
+def search(self, keyword):
+do search
+return 
+
+def delete(self, keyword):
+do delete
+
+def insert(self, personalInfo, bioInfo):
+self.personalInfo = personalInfo
+self.bioInfo = bioInfo
 ```
 ##### DB structure
 ```
@@ -104,13 +156,13 @@ Data encapsulation used for databse storage
 ### Class and Interface:
 ```
 class intput:
-    def __init__(self, user_id, age, gender, heartbeat, blood_pressure, blood_oxygen, temperature)
-    
-    def filter(data, noise, data_type)
-    
-    def return data(dic)
-    
-    def return_request(wire)
+def __init__(self, user_id, age, gender, heartbeat, blood_pressure, blood_oxygen, temperature)
+
+def filter(data, noise, data_type)
+
+def return data(dic)
+
+def return_request(wire)
 ```
 
 ## Analyzer Module(Yicun Hou & Yang Qiao)
@@ -130,45 +182,45 @@ Hypotension or hypertension sign.
 
 ### Definition:
 Heart_Rate:
-    Module to find signal loss to and shock alert to report emergency
+Module to find signal loss to and shock alert to report emergency
 
 Systolic_BP & Diastolic_BP:
-   To check if patient’s blood pressure is in a normal scope
+To check if patient’s blood pressure is in a normal scope
 
 Heart_O2_Level:
-    Check if the Oxygen Level under a normal range
+Check if the Oxygen Level under a normal range
 
 Body_temp:
-    Check if the body temperature is so high that the patient catch a fever
+Check if the body temperature is so high that the patient catch a fever
 
 ### Class and Interface:
 ```
 class Analyzer():
-    
-    def __init__(self, Systolic_BP, Diastolic_BP, Heart_Rate, Heart_O2_Level, Body_temp):
-        self.Systolic_BP = Systolic_BP
-        self.Diastolic_BP = Diastolic_BP
-        self.Heart_Rate = Heart_Rate
-        self.Heart_O2_Level = Heart_O2_Level
-        self.Body_temp = Body_temp
 
-    def Signal_Loss(self, Heart_Rate, Body_temp):
-        # Signal loss judgement
+def __init__(self, Systolic_BP, Diastolic_BP, Heart_Rate, Heart_O2_Level, Body_temp):
+self.Systolic_BP = Systolic_BP
+self.Diastolic_BP = Diastolic_BP
+self.Heart_Rate = Heart_Rate
+self.Heart_O2_Level = Heart_O2_Level
+self.Body_temp = Body_temp
 
-    def Shock_Alert(self, Heart_Rate, Body_temp):
-        # Shock emergency judgement
+def Signal_Loss(self, Heart_Rate, Body_temp):
+# Signal loss judgement
 
-    def Oxygen_Supply(self, Heart_O2_Level):
-        # Oxygen supply judgement
-    
-    def Fever(self, Body_temp):
-        # Fever judgement
+def Shock_Alert(self, Heart_Rate, Body_temp):
+# Shock emergency judgement
 
-    def Hypotension(self, Systolic_BP, Diastolic_BP):
-        # Hypotension judgement
-    
-    def Hypertension(self, Systolic_BP, Diastolic_BP):
-        # Hypertension judgement
+def Oxygen_Supply(self, Heart_O2_Level):
+# Oxygen supply judgement
+
+def Fever(self, Body_temp):
+# Fever judgement
+
+def Hypotension(self, Systolic_BP, Diastolic_BP):
+# Hypotension judgement
+
+def Hypertension(self, Systolic_BP, Diastolic_BP):
+# Hypertension judgement
 ```
 
 ## Display Module(Haoyu Xu & Leyang Shen)
@@ -199,13 +251,13 @@ Normal parameters: Pulse, Blood pressure, Blood Oxygen
 ```
 class outputAlert:
 
-    def receive_basic_iuput_data(Singal_Loss, Shock_Alert, Oxygen_Supply, Fever, Hypotension, Hypertension);
+def receive_basic_iuput_data(Singal_Loss, Shock_Alert, Oxygen_Supply, Fever, Hypotension, Hypertension);
 
-    def send_basic_input_data(BasicResult);
+def send_basic_input_data(BasicResult);
 
-    def receive_AI_iuput_data(Singal_Loss, Shock_Alert, Oxygen_Supply, Fever, Hypotension, Hypertension);
+def receive_AI_iuput_data(Singal_Loss, Shock_Alert, Oxygen_Supply, Fever, Hypotension, Hypertension);
 
-    def send_AI_input_data(AIResult); 
+def send_AI_input_data(AIResult); 
 ```
 
 
