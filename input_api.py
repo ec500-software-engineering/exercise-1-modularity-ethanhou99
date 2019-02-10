@@ -1,3 +1,10 @@
+def filter(data):
+        wrong_flag = -1
+        noise = 500
+        if data > noise:
+            data = wrong_flag
+        return data
+        
 class Patient:
 
     def __init__(self, user_id, age, gender, heartrate, Systolic_BP, Diastolic_BP, blood_oxygen, temperature, time):
@@ -15,19 +22,12 @@ class Patient:
                     "Diastolic_BP": Diastolic_BP, "Systolic_BP":Systolic_BP, "blood_oxygen": blood_oxygen, 
                     "temperature": temperature, "time": time}
 
-    def filter(self, data):
-        wrong_flag = -1
-        noise = 500
-        if data > noise:
-            data = wrong_flag
-        return data
-
 
 
     def implement_filter(self):
         for key in self.dic.keys():
             if (key != "user_id" and key != "age" and key != "gender" and key != "time"):
-                tmp = filter(self.dic[key])
+                tmp = filter(int(self.dic[key]))
                 self.dic[key] = tmp
 
 

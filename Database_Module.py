@@ -27,12 +27,12 @@ class DataBaseModule:
     
 
     def authen(self, username, password):
-        """
+        '''
         user log in, must call this function before using delete\insert\search 
         :param username: user id
         :param password: user password
         :return void
-        """
+        '''
         if self.authDB[username] == password:
             print("Authentication Succeed!")
             self.auth = True

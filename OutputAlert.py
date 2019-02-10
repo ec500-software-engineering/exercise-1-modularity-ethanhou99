@@ -77,8 +77,6 @@ def alert_management(Systolic_BP, Diastolic_BP, Heart_Rate, Heart_O2_Level, Body
 
     if new_alert.Hypertension(int(Systolic_BP), int(Diastolic_BP)) == True:
         print('\033[1;31;40mHypertension\033[0m')
-    
-    print("---------------")
 
 def display_AI_iuput_data(Blood_oxygen, Blood_pressure, Pulses):
  ## Recevie AI data from input module, then analyze it using some judge functions to generate boolean result
@@ -94,6 +92,7 @@ def display_AI_iuput_data(Blood_oxygen, Blood_pressure, Pulses):
     print(oxygen_predict_result)
     print('Pulse_predict_result:')
     print(Pulse_predict_result)
+    print("---------------")
     
 #def send_AI_input_data(AIResult):
  ## Receive the result and show it on terminal or web page

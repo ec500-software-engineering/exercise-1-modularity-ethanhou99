@@ -31,14 +31,14 @@ class AI_module():
 
 
     def AI_Module(self,Blood_oxygen, Blood_pressure, Pulses):
-
+        global np
         ## AI module do the prediection, The AI module uses previous data
-        oxygen=np.array(Blood_oxygen)
-        pressure = np.array(Blood_pressure)
-        Pulse = np.array(Pulses)
-        pressure_predict_result = np.mean(pressure)
-        oxygen_predict_result=np.mean(oxygen)
-        Pulse_predict_result = np.mean(Pulse)
+        oxygen=np.array(int(Blood_oxygen))
+        pressure = np.array(int(Blood_pressure))
+        Pulse = np.array(int(Pulses))
+        pressure_predict_result = np.mean(int(pressure))
+        oxygen_predict_result=np.mean(int(oxygen))
+        Pulse_predict_result = np.mean(int(Pulse))
 
         return pressure_predict_result, oxygen_predict_result, Pulse_predict_result
 
