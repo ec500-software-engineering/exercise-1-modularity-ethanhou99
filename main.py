@@ -29,7 +29,8 @@ def main():
                                 patient.dic['heartrate'], patient.dic['blood_oxygen'],patient.dic['temperature'])
         output.alert_management(patient.dic['Systolic_BP'], patient.dic['Diastolic_BP'],\
                                 patient.dic['heartrate'], patient.dic['blood_oxygen'],patient.dic['temperature'])
+        output.display_AI_iuput_data(patient.dic['blood_oxygen'], patient.dic['Systolic_BP'], patient.dic['heartrate'])
         
-
+        
 if __name__ == "__main__":
     main()

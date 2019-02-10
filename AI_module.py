@@ -3,9 +3,9 @@ from Database_Module import DataBaseModule
 # Input: ID(from main function perhaps), infoDB(from Database function)
 # output: Three predicted parameters, three Alert signals(Type:Boolean
 
-class AI_module(object):
-    def __init__(self, dict):
-        self._dict = dict
+class AI_module():
+    def __init__(self, db):
+        self._dict = db
 
     def Query_Data_From_Database(self,ID,infoDB):
         ## connect database, query previous one day data from Database

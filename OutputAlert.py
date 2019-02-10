@@ -1,4 +1,4 @@
-from AI_module import AI_module
+import AI_module as AI
 import Analyzer as analysis
 from datetime import datetime as dt
 
@@ -38,6 +38,7 @@ def print_patient_data(Systolic_BP, Diastolic_BP, Heart_Rate, Heart_O2_Level, Bo
     print('Body Temperature: ', Body_temp)
 
 def print_title(patientID, gender, age):
+    print("\n============================================")
     print("Welcome to the Vital Sign Montitoring System")
     print("============================================")
     print('Patient ID: ', patientID)
@@ -57,7 +58,7 @@ def alert_management(Systolic_BP, Diastolic_BP, Heart_Rate, Heart_O2_Level, Body
         new_alert.Hypertension(int(Systolic_BP), int(Diastolic_BP)) == True):
         print('\n\033[1;31;40m|Alert|\033[0m')
     else:
-        print('All the vital signs were within normal limits.\n')
+        print('\033[1;32mAll the vital signs were within normal limits.\033[0m\n')
 
     if new_alert.Shock_Alert(int(Heart_Rate), int(Body_temp)) == True:
         print('\033[1;31;40mShock_Alert!\033[0m')
@@ -79,15 +80,17 @@ def alert_management(Systolic_BP, Diastolic_BP, Heart_Rate, Heart_O2_Level, Body
     
     print("---------------")
 
-def display_AI_iuput_data():
+def display_AI_iuput_data(Blood_oxygen, Blood_pressure, Pulses):
  ## Recevie AI data from input module, then analyze it using some judge functions to generate boolean result
  ## Paramter is boolean
  ## If paramter is True, means it should be alerted, then add it to the array
-  
-    AI_module.AI_Module(Blood_oxygen, Blood_pressure, Pulses)
-    print('blood pressure prediction:')
+    dic = {}
+    pressure_predict_result, oxygen_predict_result, Pulse_predict_result = \
+        AI.AI_module(dic).AI_Module(Blood_oxygen, Blood_pressure, Pulses)
+    print('|AI Predictions|')
+    print('Blood pressure prediction:')
     print(pressure_predict_result)
-    print('blood oxygen prediction:')
+    print('Blood oxygen prediction:')
     print(oxygen_predict_result)
     print('Pulse_predict_result:')
     print(Pulse_predict_result)
