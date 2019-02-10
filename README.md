@@ -5,6 +5,8 @@ Run the main.py directly and input data to the vital_signs.txt file.
 The system will out put patient data and machine learning result, and save data to the database.
 Following is an output template:
 ```
+Authentication Succeed!
+
 ============================================
 Welcome to the Vital Sign Montitoring System
 ============================================
@@ -12,8 +14,8 @@ Patient ID:  12345
 Gender: Male
 Age:  30
 ============================================
+Time:  2019-02-10 12:35:54.184409
 |Vital Sign|
-Time:  2019-02-10 12:32:55.250551
 Systolic Blood Pressure:  100
 Diastolic Blood Pressure:  70
 Heart Rate:  90
@@ -29,7 +31,8 @@ Blood oxygen prediction:
 Pulse_predict_result:
 90.0
 ---------------
-Time:  2019-02-10 12:32:55.272467
+Time:  2019-02-10 12:35:54.202410
+|Vital Sign|
 Systolic Blood Pressure:  30
 Diastolic Blood Pressure:  180
 Heart Rate:  30
@@ -47,6 +50,7 @@ Blood oxygen prediction:
 30.0
 Pulse_predict_result:
 30.0
+---------------
 ```
 ### System Diagram(Leyang Shen)
 
