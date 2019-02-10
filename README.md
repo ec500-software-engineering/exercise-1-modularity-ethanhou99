@@ -1,5 +1,53 @@
 # EC500-Modular Design-2.4
 
+### Instructions
+Run the main.py directly and input data to the vital_signs.txt file.
+The system will out put patient data and machine learning result, and save data to the database.
+Following is an output template:
+```
+============================================
+Welcome to the Vital Sign Montitoring System
+============================================
+Patient ID:  12345
+Gender: Male
+Age:  30
+============================================
+|Vital Sign|
+Time:  2019-02-10 12:32:55.250551
+Systolic Blood Pressure:  100
+Diastolic Blood Pressure:  70
+Heart Rate:  90
+Heart Oxygen Level 80
+Body Temperature:  37
+All the vital signs were within normal limits.
+
+|AI Predictions|
+Blood pressure prediction:
+100.0
+Blood oxygen prediction:
+80.0
+Pulse_predict_result:
+90.0
+---------------
+Time:  2019-02-10 12:32:55.272467
+Systolic Blood Pressure:  30
+Diastolic Blood Pressure:  180
+Heart Rate:  30
+Heart Oxygen Level 30
+Body Temperature:  39
+
+|Alert|
+Please Increase Oxygen_Supply!
+Fever!
+Hypertension
+|AI Predictions|
+Blood pressure prediction:
+30.0
+Blood oxygen prediction:
+30.0
+Pulse_predict_result:
+30.0
+```
 ### System Diagram(Leyang Shen)
 
 <img align = center src = "https://github.com/leonshen95/EC500/blob/master/EC500%20diagram%201.jpg?raw=true">
