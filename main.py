@@ -4,7 +4,8 @@ import OutputAlert as output
 import AI_module as AI
 from Database_Module import DataBaseModule
 from datetime import datetime as dt
-
+from time import ctime,sleep
+import threading
 
 # Login to the database
 authenDB = {'admin':"123456"}
@@ -35,27 +36,46 @@ def main():
     gender = sign_array[0][2]
     age = sign_array[0][1]
     output.print_title(userID, gender, age)
+    sign = sign_array[0]
+    patient = datainput.Patient(sign[0], sign[1], sign[2], sign[3], sign[4], sign[5], sign[6], sign[7], dt.now())
 
-    for sign in sign_array:
+    def inputData():
         # Buit a patient instance from input module and filter the data
-        patient = datainput.Patient(sign[0], sign[1], sign[2], sign[3], sign[4], sign[5], sign[6], sign[7], dt.now())
         patient.implement_filter()
-        
+
+    def dataBase():
         # Insert data to the database
         filtered_data = patient.return_request(2)
         DB.insert(userID, filtered_data)
 
+    def outputData():
         # Transfer patient data to output, the analyze module is integrated in the output module
         output.print_patient_data(patient.dic['Systolic_BP'], patient.dic['Diastolic_BP'],\
                                 patient.dic['heartrate'], patient.dic['blood_oxygen'],patient.dic['temperature'])
-        
+
+    def alert():
         # If data out of range, sound alert
         output.alert_management(patient.dic['Systolic_BP'], patient.dic['Diastolic_BP'],\
                                 patient.dic['heartrate'], patient.dic['blood_oxygen'],patient.dic['temperature'])
-        
+
+    def aiModule():
         # Display AI prediction result
         output.display_AI_iuput_data(patient.dic['blood_oxygen'], patient.dic['Systolic_BP'], patient.dic['heartrate'])
 
+    threads = []
+    t1 = threading.Thread(target=inputData)
+    threads.append(t1)
+    t2 = threading.Thread(target=dataBase)
+    threads.append(t2)
+    t3 = threading.Thread(target=outputData)
+    threads.append(t3)
+    t4 = threading.Thread(target=alert)
+    threads.append(t4)
+    t5 = threading.Thread(target=aiModule)
+    threads.append(t5)
+    for thread in threads:
+        thread.start()
+        sleep(0.1)
 
 if __name__ == "__main__":
     main()
