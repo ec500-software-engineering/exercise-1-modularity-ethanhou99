@@ -31,7 +31,6 @@ class AI_module():
 
 
     def AI_Module(self,Blood_oxygen, Blood_pressure, Pulses):
-        global np
         ## AI module do the prediection, The AI module uses previous data
         oxygen=np.array(int(Blood_oxygen))
         pressure = np.array(int(Blood_pressure))

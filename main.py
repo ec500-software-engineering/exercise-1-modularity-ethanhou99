@@ -1,10 +1,8 @@
 import input_api as datainput
-import Analyzer as analysis
 import OutputAlert as output
-import AI_module as AI
 from Database_Module import DataBaseModule
 from datetime import datetime as dt
-from time import ctime,sleep
+from time import sleep
 import threading
 
 # Login to the database
